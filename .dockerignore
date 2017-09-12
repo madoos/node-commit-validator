@@ -1,0 +1,10 @@
+.npm
+.git
+.gitignore
+.editorconfig
+node_modules
+npm-debug.log
+*.crt
+*.key
+*.pem
+.eslintrc.json

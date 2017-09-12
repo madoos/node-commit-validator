@@ -4,6 +4,7 @@
   "description": "Docker container for module /willsoto/validate-commit",
   "main": "index.js",
   "scripts": {
+    "start": "node ./index.js",
     "test": "npm run lint && npm run cover:unit",
     "test:unit": "./bin/test/unit",
     "test:int": "./bin/test/int",

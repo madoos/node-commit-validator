@@ -1,11 +1,12 @@
 'use strict'
 
 const { isEmpty } = require('ramda')
-const { COMMIT_DELIMITER, COMMITS, PRESET } = require('./ENV')
+const ENV = require('./ENV')
+const { COMMITS, PRESET, COMMIT_DELIMITER } = ENV
 const getInvalidCommits = require('./src/getInvalidCommits')
 
+console.log('Executing With Args: \n\n', ENV, '\n')
 const invalidCommits = getInvalidCommits(COMMITS, PRESET, COMMIT_DELIMITER)
-console.log(invalidCommits)
 
 if (isEmpty(invalidCommits)) {
   console.log('Commit validation successfully')
