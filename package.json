@@ -1,0 +1,50 @@
+{
+  "name": "commit-validator",
+  "version": "0.0.1",
+  "description": "Docker container for module /willsoto/validate-commit",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && npm run cover:unit",
+    "test:unit": "./bin/test/unit",
+    "test:int": "./bin/test/int",
+    "cover": "./bin/test/cover",
+    "cover:unit": "./bin/test/cover-unit",
+    "lint": "./bin/test/linter",
+    "serve:coverage": "./bin/serve/coverage",
+    "serve:linter": "./bin/serve/linter"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madoos/node-commit-validator.git"
+  },
+  "keywords": [
+    "lib"
+  ],
+  "author": {
+    "name": "Maurice Domínguez",
+    "email": "maurice.ronet.dominguez@gmail.com",
+    "url": "https://github.com/madoos/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/madoos/node-commit-validator.git/issues"
+  },
+  "homepage": "https://github.com/madoos/node-commit-validator.git#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "standard": "^8.6.0",
+    "http-server": "^0.9.0"
+  },
+  "standard": {
+    "env": {
+      "node": true,
+      "mocha": true
+    }
+  },
+  "dependencies": {
+    "ramda": "^0.24.1",
+    "validate-commit": "^3.2.1"
+  }
+}
