@@ -1,17 +1,18 @@
 'use strict'
 
-const { isEmpty } = require('ramda')
-const ENV = require('./ENV')
-const { COMMITS, PRESET, COMMIT_DELIMITER } = ENV
-const getInvalidCommits = require('./src/getInvalidCommits')
+const split = require('split2')
+const { prop, pipe, useWith, complement, ifElse } = require('ramda')
+const { PRESET } = require('./ENV')
+const { splitFirstLine, validateCommitWith, nothing } = require('./src/util')
+const getCommitMsg = pipe(splitFirstLine(' '), prop(1))
 
-console.log('Executing With Args: \n\n', ENV, '\n')
-const invalidCommits = getInvalidCommits(COMMITS, PRESET, COMMIT_DELIMITER)
+const isValidCommit = useWith(validateCommitWith({ preset: PRESET }), [getCommitMsg])
+const isInvalidCommit = complement(isValidCommit)
 
-if (isEmpty(invalidCommits)) {
-  console.log('Commit validation successfully')
-  process.exit(0)
-}
+const exitWithError = (commit) => process.exit(1)
+const exitSuccess = () => process.exit(0)
 
-console.log('Commit validation error:', invalidCommits)
-process.exit(1)
+process.stdin
+  .pipe(split('\n'))
+  .on('data', ifElse(isInvalidCommit, exitWithError, nothing))
+  .on('end', exitSuccess)
