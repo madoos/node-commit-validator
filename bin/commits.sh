@@ -1,3 +1,3 @@
 #!/bin/bash
 
-git log --oneline 
+git log --oneline | cut -c9-
